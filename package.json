@@ -1,0 +1,14 @@
+{
+  "name": "flowbudget-api",
+  "version": "0.0.1",
+  "description": "API for the flowbudget application",
+  "main": "index.js",
+  "repository": "https://github.com/Aleeycreative/flowbudget",
+  "author": "Aleeycreative",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "nodemon": "^2.0.4"
+  }
+}
