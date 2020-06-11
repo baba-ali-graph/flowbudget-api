@@ -2,20 +2,18 @@ const Datastore = require('nedb')
 
 let carsDB = new Datastore()
 
-async function insertCar(year, model) {
-    return carsDB.insert({year, model}, (err, newCar) => {
-        if(err) return false
-        // console.log(newCar)
-        return newCar
+function insertCar(year, model) {
+    return new Promise((resolve, reject) => {
+        return carsDB.insert({year, model, so}, (err, newCar) => {
+            return resolve(err ? false : newCar)
+        })
     })
 }
 
 async function addCar() {
-    let newCar = await insertCar(2020, "Audi")
-    return newCar
+    
+        let newCar = await insertCar(2020, "Audi")
+        console.log(newCar)
 }
 
-(async() => {
-    let car = await addCar()
-    console.log(car)
-})()
+addCar()

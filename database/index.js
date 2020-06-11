@@ -7,26 +7,32 @@ class DatabaseModel {
     }
     
      registerUser(payload) {
-         return userDB.insert(payload, (err, newUser) => {
-             if(err) return false
-             return newUser
+         return new Promise((resolve, reject) => {
+            return userDB.insert(payload, (err, newUser) => {
+                if(err) return reject(err)
+                return resolve(newUser)
+            })
          })
      }
 
      updateUser(ID, payload,) {
-       return  userDB.find({_id:ID}, (err, existingUser) => {
-             if(err) return false
-             let user = {...existingUser, ...payload}
-           return userDB.update({_id:ID}, {user}, (err, updatedUser) => {
-                 if(err) return false
-                 return updatedUser
-             })
-         })
+       return new Promise((resolve, reject) => {
+        return  userDB.find({_id:ID}, (err, existingUser) => {
+            if(err) return reject(err)
+            let user = {...existingUser, ...payload}
+          return userDB.update({_id:ID}, {user}, (err, updatedUser) => {
+                if(err) return reject(err)
+                return resolve(updatedUser)
+            })
+        })
+       })
      }
      deleteUser(ID) {
-            return userDB.remove({_id:ID}, {},(err, deletedUser) => {
-                if(err) return false
-                return deletedUser
+            return new Promise((resolve,reject) => {
+                return userDB.remove({_id:ID}, {},(err, deletedUser) => {
+                    if(err) return reject(err)
+                    return resolve(deletedUser)
+                })
             })
      }
      fetchUser(ID) {

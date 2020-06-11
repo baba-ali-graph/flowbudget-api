@@ -12,11 +12,14 @@ exports.registerUser = async (req,res) => {
     let validatedUser = validation.user(user)
     if(validatedUser){
         let sanitizedUser = sanitize(validatedUser)
-        let savedUser = dbInstance.registerUser(sanitizedUser)
+        let savedUser = await dbInstance.registerUser(sanitizedUser)
         if(savedUser){
             let token = generateToken(savedUser)
-            let budgets = dbInstance.fetchBudget(savedUser._id)
-            res.status(SUCCESS).json({token, budgets})
+            let budgets = await dbInstance.fetchBudget(savedUser._id)
+            if(budgets)
+                res.status(SUCCESS).json({token, budgets})
+            else
+                 res.status(AUTH_STATUS_FAIL).json(ERRORS.database_err)
         } else {
             res.status(AUTH_STATUS_FAIL).json(ERRORS.database_err)
         }
