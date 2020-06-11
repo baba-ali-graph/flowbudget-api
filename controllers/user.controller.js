@@ -4,7 +4,7 @@ const generateToken = require('../utilities/generate-token')
 const generateResetLink = require('../utitlities/generate-reset-link')
 const emailer = require('../external/emailer/index')
 const ERRORS = require('../errors/index')
-const (AUTH_STATUS_FAIL,SUCCESS) = require('../utilities/statuses')
+const (AUTH_STATUS_FAIL, MAIL_STATUS_FAIL, SUCCESS) = require('../utilities/statuses')
 
 
 exports.registerUser = async (req,res) => {
@@ -67,4 +67,3 @@ exports.forgetPassword = async (req, res) => {
 }
 
 
-~
