@@ -18,10 +18,10 @@ exports.registerUser = async (req,res) => {
             let budgets = dbInstance.fetchBudget(savedUser._id)
             res.status(SUCCESS).json({token, budgets})
         } else {
-            res.status(AUTH_STATUS_FAIL).json(ERRORS.database)
+            res.status(AUTH_STATUS_FAIL).json(ERRORS.database_err)
         }
     } else {
-        res.status(AUTH_STATUS_FAIL).json(ERRORS.validation)
+        res.status(AUTH_STATUS_FAIL).json(ERRORS.validation_err)
     }
     
 }
@@ -67,3 +67,4 @@ exports.forgetPassword = async (req, res) => {
 }
 
 
+~
