@@ -9,7 +9,7 @@ router.use(routes.private, authProvider)
 // routes: budget
 router.post(route.createBudget, budgetController.createBudget)
 router.put(route.editBudget, budgetController.editBudget)
-router.get(routes.getBudget, budgetController.getBudget)
+router.get(routes.retrieveBudget, budgetController.retrieveBudget)
 
 // routes: user
 router.post(routes.registerUser, userController.registerUser)
