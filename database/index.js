@@ -1,6 +1,6 @@
 const logger = require('../logger/index')
 const userDB = require('./3rdParty/users.js')
-
+const budgetDB = require('./3rdParty/budgets.js')
 class DatabaseModel {
     constructor(){
         logger.log(` A new db instance has been initiated`)
@@ -15,7 +15,7 @@ class DatabaseModel {
          })
      }
 
-     updateUser(ID, payload,) {
+     updateUser(ID, payload) {
        return new Promise((resolve, reject) => {
         return  userDB.find({_id:ID}, (err, existingUser) => {
             if(err) return reject(err)
@@ -37,13 +37,21 @@ class DatabaseModel {
      }
      fetchUser(ID) {
          return new Promise((resolve, reject) => {
-             return userDB.find(ID, (err, existingUser) => {
+             return userDB.find({_id:ID}, (err, existingUser) => {
                  if(err) return reject(err)
                  return resolve(existingUser)
              })
          })
      }
      
+     fetchUserWithKey(key, email) {
+        return new Promise((resolve, reject) => {
+            return userDB.find({[key]: email}, (err, existingUser) => {
+                if(err) return reject(err)
+                return resolve(existingUser)
+            })
+        })
+    }
      createBudget(payload) {
          return new Promise((resolve, reject) => {
              return budgetDB.insert({...payload}, (err, newBudget) => {
@@ -75,7 +83,7 @@ class DatabaseModel {
         return new Promise((resolve, reject) => {
             return budgetDB.find(ID, (err, existingBudget) => {
                 if(err) return reject(err)
-                return resolve(existingUser)
+                return resolve(existingBudget)
             })
         })
      }

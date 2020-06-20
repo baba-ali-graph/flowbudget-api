@@ -1,0 +1,1 @@
+"use strict";function sanitizer(r){return r=r.toLowerCase()}module.exports=function(r){for(var t in r)r[t]=sanitizer(r[t]);return r};

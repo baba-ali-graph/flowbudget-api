@@ -1,0 +1,1 @@
+"use strict";var jwt=require("jsonwebtoken");require("dotenv").config(),module.exports=function(e){var r=e._id,n=e.username,i=e.email,s=process.env.SECRET;return jwt.sign({_id:r,username:n,email:i},s,{expiresIn:"2h"})};

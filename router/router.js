@@ -1,15 +1,15 @@
-const db = require('./database/index')
+const db = require('../database/index')
 const router = require('express').Router()
-const route = require('./route')
+const routes = require('./routes')
 const {budgetController, userController} = require('../controllers/index')
 const authProvider = require('../security/auth')
 // protection
-router.use(routes.private, authProvider)
+router.use('api/v1', authProvider)
 
-// routes: budget
-router.post(route.createBudget, budgetController.createBudget)
-router.put(route.editBudget, budgetController.editBudget)
-router.get(routes.retrieveBudget, budgetController.retrieveBudget)
+// // routes: budget
+// router.post(routes.createBudget, budgetController.createBudget)
+// router.put(routes.editBudget, budgetController.editBudget)
+// router.get(routes.retrieveBudget, budgetController.retrieveBudget)
 
 // routes: user
 router.post(routes.registerUser, userController.registerUser)
@@ -17,4 +17,4 @@ router.post(routes.loginUser, userController.loginUser)
 router.post(routes.forgetPassword, userController.forgetPassword)
 router.post(routes.resetPassword, userController.resetPassword)
 
-
+module.exports = router

@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const http = require('http')
-const router = require('./app/router')
+const router = require('./router/router')
 const dotenv = require('dotenv')
 const logger = require('./logger/index')
 dotenv.config()

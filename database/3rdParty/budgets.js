@@ -1,3 +1,5 @@
+const path = require('path')
 const DataStore = require('nedb')
-let Budgets =  new DataStore({filename:"./budgets.db", autoload:true})
+let filename = path.resolve(process.cwd(), '/database/3rdParty/budgets.db')
+let Budgets =  new DataStore({filename, autoload:true})
 module.exports = Budgets 

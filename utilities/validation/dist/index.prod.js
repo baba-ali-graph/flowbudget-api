@@ -1,0 +1,1 @@
+"use strict";exports.user=function(e){return console.log(e),!0};
